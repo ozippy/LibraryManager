@@ -3,10 +3,10 @@
 function getAllBooks() {
 
     let books = [
-        { title: 'Ulysses', author: 'James Joyce', available: false, category: Category.Fiction },
-        { title: 'A Farewell to Arms', author: 'Ernest Hemingway', available: false, category: Category.Fiction },
-        { title: 'I Know Why the Caged Bird Sings', author: 'Maya Angelou', available: true, category: Category.Poetry },
-        { title: 'Moby Dick', author: 'Herman Melville', available: true, category: Category.Fiction }
+        { id: 1, title: 'Ulysses', author: 'James Joyce', available: false, category: Category.Fiction },
+        { id: 2, title: 'A Farewell to Arms', author: 'Ernest Hemingway', available: false, category: Category.Fiction },
+        { id: 3, title: 'I Know Why the Caged Bird Sings', author: 'Maya Angelou', available: true, category: Category.Poetry },
+        { id: 4, title: 'Moby Dick', author: 'Herman Melville', available: true, category: Category.Fiction }
     ];
 
     return books;
@@ -14,7 +14,7 @@ function getAllBooks() {
 
 function logFirstAvailable(books): void {
     let numberOfBooks: number = books.length;
-    let firstAvailable : string = '';
+    let firstAvailable: string = '';
 
     for (let currentBook of books) {
         if (currentBook.available) {
@@ -48,12 +48,37 @@ function getBookTitlesByCategory(categoryFilter: Category): Array<string> {
     return filteredBooks;
 }
 
-function logBookTitles(titles : string[]): void {
+
+function getBookById(id:number) {
+    const allBooks = getAllBooks();
+    return allBooks.filter(book => book.id === id)[0];
+}
+
+
+function logBookTitles(titles: string[]): void {
     for (let title of titles) {
         console.log(title);
     }
 }
 
-const poetryBooks = getBookTitlesByCategory(Category.Poetry);
+function createCustomerId(name: string, id: number) : string {
+    return name + id;
+}
 
-logBookTitles(poetryBooks); 
+//**********************************************************************
+
+
+let x: number;
+let idGenerator: (chars: string, nums: number) => string;
+idGenerator = createCustomerId;
+
+
+let myId: string = idGenerator('john', 12);
+console.log(myId);
+
+
+//const fictionBooks = getBookTitlesByCategory(Category.Fiction);
+
+//fictionBooks.forEach((val, idx, arr) => console.log(++idx + ' - ' + val));
+
+//console.log(getBookById(2).title);
