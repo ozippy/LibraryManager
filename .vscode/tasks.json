@@ -6,9 +6,9 @@
     "isShellCommand": true,
     "args": ["--target", "ES5",
             "--outDir", "js",
+            "--module", "commonjs",
             "--sourceMap",
             "--watch", "app.ts"],
     "showOutput": "silent",
-    "isWatching": true,
-    "problemMatcher": "$tsc-watch"
+    "problemMatcher": "$tsc"
 }
