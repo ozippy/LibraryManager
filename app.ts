@@ -1,6 +1,9 @@
 ﻿import { Category } from "./enums";
-import { Book, DamageLogger, Author, Librarian } from "./interfaces";
+import { Book, DamageLogger, Author, Librarian, Magazine } from "./interfaces";
 import { UniversityLibrarian, ReferenceItem } from "./classes";
+import { Purge }  from "./utilityFunctions";
+
+import Shelf from "./shelf";
 
 function GetAllBooks(): Book[] {
 
@@ -125,14 +128,56 @@ function PrintBook(book: Book): void {
 
 //*********************************************
 
+let inventory: Array<Book> = [
+    { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
+    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
+];
 
-let ref = new ReferenceItem('Facts and figures',1977);
-ref.publisher='Cott publishing';
-console.log(ref.publisher);
-console.log(ReferenceItem.department);
+let bookShelf: Shelf<Book> = new Shelf<Book>();
+
+inventory.forEach(book => bookShelf.add(book));
+
+let firstBook: Book = bookShelf.getFirst();
 
 
-ref.printItem();
+let magazines: Array<Magazine> = [
+    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+    { title: 'Five Points', publisher: 'GSU' }
+];
+
+let magazineShelf: Shelf<Magazine> = new Shelf<Magazine>();
+
+magazines.forEach(mag => magazineShelf.add(mag));
+
+let firstMagazine: Magazine = magazineShelf.getFirst();
+
+magazineShelf.printTitles();
+
+let softwareBook = bookShelf.find('Code Complete');
+console.log(`${softwareBook.title} (${softwareBook.author}`);
+
+
+// let purgedBooks:Array<Book> = Purge<Book>(inventory);
+
+// purgedBooks.forEach(book => {
+// 	console.log(book.title);
+// });
+
+// let purgedNums: Array<number> = Purge<number>([1,2,3,4]);
+// console.log(purgedNums);
+
+
+
+// let ref = new ReferenceItem('Facts and figures',1977);
+// ref.publisher='Cott publishing';
+// console.log(ref.publisher);
+// console.log(ReferenceItem.department);
+
+
+// ref.printItem();
 
 
 
