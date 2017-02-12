@@ -102,9 +102,14 @@ function PrintBook(book) {
     console.log(book.title + ' by ' + book.author);
 }
 //*********************************************
-var favouriteLibrarian = new classes_1.UniversityLibrarian();
-favouriteLibrarian.name = 'Sharon';
-favouriteLibrarian.assistCustomer('Lynda');
+var ref = new classes_1.ReferenceItem('Facts and figures', 1977);
+ref.publisher = 'Cott publishing';
+console.log(ref.publisher);
+console.log(classes_1.ReferenceItem.department);
+ref.printItem();
+// let favouriteLibrarian: Librarian = new UniversityLibrarian();
+// favouriteLibrarian.name='Sharon';
+// favouriteLibrarian.assistCustomer('Lynda');
 // let myBook : Book = {
 //     id: 5,
 //     title: 'Pride and Prejudice',
